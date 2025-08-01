@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <body>
+        <div>Auto Complete</div>
+        <h:form>
+
+
+            <h5>Countrylist1</h5>
+            <div class="simple1">
+                <p:outputLabel value="Simple" for="@next"/>
+                <p:autoComplete id="acSimple" value="#{autoCompleteView.txt1}"
+                                  minQueryLength="2"
+                                  maxResults="7"
+                completeMethod="#{autoCompleteView.countryList()}" scrollHeight="250"/>
+            </div>
+            
+            <h5>nameSuggession</h5>
+            <div class="simple1">
+                <p:outputLabel value="Simple" for="@next"/>
+                <p:autoComplete id="acSimple2" value="#{autoCompleteView.txt1}"
+                                  minQueryLength="2"
+                                  maxResults="5"
+                completeMethod="#{autoCompleteView.nameSuggestions}" scrollHeight="250"/>
+            </div>         
+            
+            <h5>hospital Search</h5>
+            <div class="simple1" style="width: 50px">
+                <p:outputLabel value="Simple" for="@next"/>
+                <p:autoComplete id="subscriptionId" value="#{autoCompleteView.txt1}"
+                                  minQueryLength="3"
+                                  maxResults="7"
+                                  multiple="true"                                
+                                  completeMethod="#{autoCompleteView.hospitalSuggestions}" scrollHeight="250" >
+                  <p:ajax event="itemSelect" listener="#{autoCompleteView.action}" process="@form"/> 
+                  <p:ajax event="change" listener="#{autoCompleteView.action}" process="@form"/> 
+                </p:autoComplete>   
+            </div>  
+            
+            <h5>ESport Player</h5>
+            <div class="simple1">
+                <p:outputLabel value="Simple" for="@next"/>
+                <p:autoComplete id="esportid" value="#{autoCompleteView.hmainSelected}"
+                                  minQueryLength="3"
+                                  maxResults="7"
+                                  var="hmain" itemLabel="#{hmain.display}" itemValue="#{hmain}"
+                                  converter="#{hmainConverter}" forceSelection="true"      
+                                  completeMethod="#{autoCompleteView.hospitalSuggestionsObject}" scrollHeight="250" >
+                  <p:ajax event="itemSelect" listener="#{autoCompleteView.action}" process="@form"/> 
+                  <p:ajax event="change" listener="#{autoCompleteView.action}" process="@form"/> 
+                </p:autoComplete>   
+            </div> 
+
+        
+            
+             
+    
+             
+             
+        </h:form>
+     
+    </body>
+</html>

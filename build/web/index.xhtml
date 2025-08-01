@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Hello from Facelets : <h:outputText value="#{frontController.sayHello()}" />
+        <br />
+        Msg1 :  <h:outputText value="#{frontController.sayHello()}" />
+        <br />
+        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+        
+        <h:form>
+            Enter Your Name<h:inputText value="#{hello_world.user_name}"></h:inputText> <br />
+            <h:commandButton value="Submit" action="welcome_jsf"></h:commandButton>
+            
+        </h:form>
+        
+        <h:form>
+            JS input : <h:inputText value="#{hello_world.message2}"></h:inputText> <br />
+            <h:commandButton value="Submit" action="hello_world.testInput1()"></h:commandButton>
+            
+        </h:form>        
+        
+        <h:form>
+	<p>Prime page2 : Listener</p>
+	<h:commandButton action="#{navController.moveToPage2}" value="listener lesson" />
+	</h:form>	<hr />      
+        
+        <h:form>
+	<p>Prime page3 : xxxx</p>
+	<h:commandButton action="#{navController.moveToPage2}" value="listener lesson" />
+	</h:form>	<hr />       
+        
+        <h:form>
+	<p>Prime page4 : AutoComplete</p>
+	<h:commandButton action="#{navController.moveToPage4}" value="listener lesson" />
+	</h:form>	<hr />     
+        
+        <h:form>
+	<p>Player : AutoComplete</p>
+	<h:commandButton action="#{navController.moveToPlayer}" value="listener lesson" />
+	</h:form>	<hr />      
+        <h:form>
+	<p>Select2 Test</p>
+        <h:commandButton action="#{navController.moveToSelect2()}" value="listener lesson" />
+	</h:form>	<hr />           
+        
+   
+        
+    </h:body>
+</html>
+

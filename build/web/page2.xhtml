@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <body>
+        <div>TODO write content</div><h2>This is Page 2</h2> <br/>
+        Msg1 :  <h:outputText value="#{page2.getHello()}" /> <br/>
+        <h:form>
+            
+        <p:panel id="panelTest1">
+            <p:dataTable id="itemDetail" var="emp" value="#{page2.empList}" 
+                editable="true" scrollable="true" tableStyle="width:auto" >
+            
+            <p:ajax event="rowEdit" listener="#{page2.onEdit}" update="itemDetail" />  
+            <p:ajax event="rowEditCancel" update="itemDetail" />  
+            
+                <p:column headerText="รหัสพนักงาน" sortBy="#{emp.id}" width="143">
+                    <h:outputText value="#{emp.id}" rendered="#{emp.id != null}" />
+                    <h:outputText value="new" rendered="#{emp.id == null}" />
+                </p:column>
+                
+                <p:column headerText="Name" sortBy="#{emp.name}" width="143">
+                <p:cellEditor>  
+                    <f:facet name="output" >
+                        <h:outputText value="#{emp.name}" rendered="#{emp.id != null}" />                     
+                    </f:facet>  
+                    <f:facet name="input">  
+                        <p:inputText value="#{emp.name}" rendered="#{emp.id != null}"   />
+                    </f:facet>  
+                </p:cellEditor>                     
+                <h:inputText value="#{emp.name}" rendered="#{emp.id == null}" />
+                </p:column>    
+                
+                <p:column headerText="Division" sortBy="#{emp.division}" width="173">
+                    <h:outputText value="#{emp.division}" rendered="#{emp.id != null}" />
+                    <h:inputText value="#{emp.name}" style="width: 55px" rendered="#{emp.id == null}" />    
+                <p:commandLink action="#{page2.searchData()}"  update="itemDetail" rendered="#{emp.id == null}" >
+                    <h:outputText value="SearchLink" />
+                    <f:setPropertyActionListener value="#{emp}" target="#{page2.selectItem}"/>
+                    <f:setPropertyActionListener value="1" target="#{page2.p_group}"/>
+                </p:commandLink>
+                </p:column>                   
+                
+            <p:column headerText="แก้ไข " width="70">
+                <p:rowEditor />  
+            </p:column>                
+            </p:dataTable>
+            <br />
+          <h:inputHidden binding="#{page2.addCount}" converter="javax.faces.Integer" />
+           <h:commandButton value="Add" action="#{page2.addNewDataItem()}" />
+           <h:commandButton value="Save" action="#{page2.saveNewDataItems()}" />    
+           <h:commandButton value="Search" action="#{page2.searchData()}"  /> 
+        </p:panel>
+        
+        </h:form> 
+    </body>
+</html>
