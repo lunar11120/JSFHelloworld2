@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>    
+</h:head>
+        <f:view afterPhase="#{playerAutoComplete.phaseListener}">
+        <h:form prependId="false">
+        <h1>JavaBeat Primefaces Example</h1>
+        <h2>Primefaces – AutoComplete + Ajax Behavior</h2>
+        <h:outputText value="Enter name of the player you wish to see statistics for :"/>
+        #{''}
+            <p:autoComplete id="auto" value="#{playerAutoComplete.players}"
+            completeMethod="#{playerAutoComplete.complete}"
+            minQueryLength="3"
+            var="player"
+            itemValue="#{player}"
+            itemLabel="#{player.playerName}"
+            converter="#{playerConverter}"
+            multiple="true">
+            <p:ajax event="itemSelect" listener="#{playerAutoComplete.handleSelect}" update="msg"></p:ajax>
+            <p:ajax event="itemUnselect" listener="#{playerAutoComplete.handleUnSelect}" update="msg"></p:ajax>
+            </p:autoComplete>
+        <br/>         
+        <p:messages id="msg"/>
+        
+        
+        </h:form>
+        </f:view>
+
+</html>
